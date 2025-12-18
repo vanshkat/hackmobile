@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>System Diagnostic</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --neon-green: #00ff66;
+      --cyber-red: #ff003c;
+    }
+    body {
+      background-color: #050505;
+      font-family: 'Inter', sans-serif;
+      color: white;
+      touch-action: manipulation;
+      overflow: hidden;
+      /* Prevent text selection to feel more like a native app */
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .glass {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 10px rgba(0, 255, 102, 0.2); }
+      50% { box-shadow: 0 0 25px rgba(0, 255, 102, 0.5); }
+    }
+    .neon-pulse {
+      animation: pulse-glow 2s infinite;
+    }
+    
+    /* Glitch Animations */
+    @keyframes glitch-text {
+      0% { text-shadow: 2px 0 var(--cyber-red), -2px 0 #00ffff; transform: translate(0); }
+      20% { text-shadow: -2px 0 var(--cyber-red), 2px 0 #00ffff; transform: translate(-1px, 1px); }
+      40% { text-shadow: 2px -1px var(--cyber-red), -2px 1px #00ffff; transform: translate(1px, -1px); }
+      60% { text-shadow: -1px 2px var(--cyber-red), 1px -2px #00ffff; transform: translate(-1px, -1px); }
+      80% { text-shadow: 2px 2px var(--cyber-red), -2px -2px #00ffff; transform: translate(1px, 1px); }
+      100% { text-shadow: 2px 0 var(--cyber-red), -2px 0 #00ffff; transform: translate(0); }
+    }
+    .glitch {
+      animation: glitch-text 0.2s infinite;
+    }
+
+    @keyframes jitter {
+      0% { transform: translate(0,0); }
+      10% { transform: translate(-1px, -1px); }
+      20% { transform: translate(1px, 1px); }
+      30% { transform: translate(-1px, 1px); }
+      40% { transform: translate(1px, -1px); }
+      50% { transform: translate(0,0); }
+    }
+    .jitter {
+      animation: jitter 0.1s infinite;
+    }
+
+    .scanline {
+      width: 100%;
+      height: 100px;
+      z-index: 100;
+      background: linear-gradient(0deg, rgba(0, 255, 102, 0) 0%, rgba(0, 255, 102, 0.1) 50%, rgba(0, 255, 102, 0) 100%);
+      opacity: 0.1;
+      position: absolute;
+      bottom: 100%;
+      animation: scan 3s linear infinite;
+    }
+    @keyframes scan {
+      to { bottom: -100px; }
+    }
+
+    /* Hide cursor while "hacking" to make it feel unstoppable */
+    .no-cursor {
+      cursor: none !important;
+    }
+  </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/"
+  }
+}
+</script>
+</head>
+<body class="overflow-hidden" oncontextmenu="return false;">
+  <div id="root"></div>
+</body>
+</html>
